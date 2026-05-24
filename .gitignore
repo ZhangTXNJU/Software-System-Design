@@ -1,0 +1,8 @@
+*.class
+out/
+*.jar
+.DS_Store
+.idea/
+*.iml
+.vscode/
+junit-platform-console-standalone.jar
