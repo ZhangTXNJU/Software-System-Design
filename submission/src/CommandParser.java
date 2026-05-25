@@ -1,5 +1,3 @@
-package fs.service;
-
 import java.util.List;
 
 public class CommandParser {
@@ -9,10 +7,6 @@ public class CommandParser {
         this.fs = fs;
     }
 
-    /**
-     * Parse and execute a single command line.
-     * @return output string to print, or null if no output (silent)
-     */
     public String execute(String line) {
         if (line == null || line.trim().isEmpty()) {
             return null;
@@ -29,10 +23,12 @@ public class CommandParser {
             case "TOUCH":
                 if (parts.length >= 3) {
                     try {
+                        if(parts[2].startsWith("-")){
+                            parts[2] = "0";
+                        }
                         long size = Long.parseLong(parts[2]);
                         fs.touch(parts[1], size);
                     } catch (NumberFormatException ignored) {
-                        // invalid size → silent ignore
                     }
                 }
                 return null;
